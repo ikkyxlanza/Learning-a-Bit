@@ -47,30 +47,30 @@ t = false<br>
 - A definir
 
 <h4>Bloco IF</h4>
-<code>if 1 == 1:                     </code>
-<code>  sai "Eba, entrou no IF!!!!"  </code>
-<code>:                              </code>
+<code>if 1 == 1:                     </code><br>
+<code>  sai "Eba, entrou no IF!!!!"  </code><br>
+<code>:                              </code><br>
 
 <h4>Bloco ELSE</h4>
-<code>if false == true:                              </code>
-<code>  sai "Acho que nunca vai entrar nesse IF!!!"  </code>
-<code>:else:                                         </code>
-<code>  sai "Mas vai entrar sempre nesse ELSE!!!"    </code>
-<code>:                                              </code>
+<code>if false == true:                              </code><br>
+<code>  sai "Acho que nunca vai entrar nesse IF!!!"  </code><br>
+<code>:else:                                         </code><br>
+<code>  sai "Mas vai entrar sempre nesse ELSE!!!"    </code><br>
+<code>:                                              </code><br>
 
 <h4>Bloco FOR</h4>
-<code>for i = 0 | a &lt;= 5 | a =+ 1:   </code>
-<code>  sai &quot;Print &quot; + i      </code>
-<code>:                                 </code>
+<code>for i = 0 | a &lt;= 5 | a =+ 1:   </code><br>
+<code>  sai &quot;Print &quot; + i      </code><br>
+<code>:                                 </code><br>
 
 <h4>Bloco WHILE</h4>
-<code>while i &lt;= 4:             </code>
-<code>&nbsp;&nbsp;sai "Print " + i </code>
-<code>&nbsp;&nbsp;i += 1           </code>
-<code>:                            </code>
+<code>while i &lt;= 4:             </code><br>
+<code>&nbsp;&nbsp;sai "Print " + i </code><br>
+<code>&nbsp;&nbsp;i += 1           </code><br>
+<code>:                            </code><br>
 
 <h4>Bloco DO-WHILE</h4>
-<code>do:                          </code>
-<code>&nbsp;&nbsp;sai "Print " + i </code>
-<code>&nbsp;&nbsp;i += 1           </code>
-<code>:while i &lt;= 4::           </code> -- A definir
+<code>do:                          </code><br>
+<code>&nbsp;&nbsp;sai "Print " + i </code><br>
+<code>&nbsp;&nbsp;i += 1           </code><br>
+<code>:while i &lt;= 4::           </code><br> -- A definir
