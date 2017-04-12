@@ -21,12 +21,12 @@
 <h4>Operadores lógico</h4>
 <ul>
   <li>Maior <b>></b></li>
-  <li>Menor <b><</b></li>
+  <li>Menor <b>&lt;</b></li>
   <li>Igual <b>==</b></li>
   <li>Diferente <b>!=</b></li>
   <li>Maior igual <b>>=</b></li>
-  <li>Menor igual <b><=</b></li>
-  <li>E <b>&&</b></li>
+  <li>Menor igual <b>&lt;=</b></li>
+  <li>E <b>&amp;&amp;</b></li>
   <li>OU <b>||</b></li>
   <li>NOT <b>~</b></li>
 </ul>
@@ -47,30 +47,31 @@ t = false<br>
 - A definir
 
 <h4>Bloco IF</h4>
-if 1 == 1:<br>
-&nbsp;&nbsp;sai "Eba, entrou no IF!!!!"<br>
-:<br>
+<pre><code>if 1 == 1:
+  sai "Eba, entrou no IF!!!!"
+  :</code><pre>
 
 <h4>Bloco ELSE</h4>
-if false == true:<br>
-&nbsp;&nbsp;sai "Acho que nunca vai entrar nesse IF!!!"<br>
-:else:<br>
-&nbsp;&nbsp;sai "Mas vai entrar sempre nesse ELSE!!!"<br>
-:<br>
+<pre><code>if false == true:
+  sai "Acho que nunca vai entrar nesse IF!!!"
+:else:
+  sai "Mas vai entrar sempre nesse ELSE!!!"
+  :</code><pre>
 
 <h4>Bloco FOR</h4>
-for i = 0 | a < 5 | a =+ 1:<br>
-&nbsp;&nbsp;sai "Print " + i<br>
-:<br>
+<code>for i = 0 | a &lt;= 5 | a =+ 1:
+  sai &quot;Print &quot; + i
+  :
+  </code>
 
 <h4>Bloco WHILE</h4>
-while i <= 4:<br>
+<code>while i &lt;= 4:<br>
 &nbsp;&nbsp;sai "Print " + i<br>
 &nbsp;&nbsp;i += 1<br>
-:<br>
+:</code><br>
 
 <h4>Bloco DO-WHILE</h4>
-do:<br>
+<code>do:<br>
 &nbsp;&nbsp;sai "Print " + i<br>
 &nbsp;&nbsp;i += 1<br>
-:while i <= 4:: -- A definir
+:while i &lt;= 4::</code> -- A definir
