@@ -47,31 +47,30 @@ t = false<br>
 - A definir
 
 <h4>Bloco IF</h4>
-<pre><code>if 1 == 1:
-  sai "Eba, entrou no IF!!!!"
-  :</code><pre>
+<code>if 1 == 1:                     </code>
+<code>  sai "Eba, entrou no IF!!!!"  </code>
+<code>:                              </code>
 
 <h4>Bloco ELSE</h4>
-<pre><code>if false == true:
-  sai "Acho que nunca vai entrar nesse IF!!!"
-:else:
-  sai "Mas vai entrar sempre nesse ELSE!!!"
-  :</code><pre>
+<code>if false == true:                              </code>
+<code>  sai "Acho que nunca vai entrar nesse IF!!!"  </code>
+<code>:else:                                         </code>
+<code>  sai "Mas vai entrar sempre nesse ELSE!!!"    </code>
+<code>:                                              </code>
 
 <h4>Bloco FOR</h4>
-<code>for i = 0 | a &lt;= 5 | a =+ 1:
-  sai &quot;Print &quot; + i
-  :
-  </code>
+<code>for i = 0 | a &lt;= 5 | a =+ 1:   </code>
+<code>  sai &quot;Print &quot; + i      </code>
+<code>:                                 </code>
 
 <h4>Bloco WHILE</h4>
-<code>while i &lt;= 4:<br>
-&nbsp;&nbsp;sai "Print " + i<br>
-&nbsp;&nbsp;i += 1<br>
-:</code><br>
+<code>while i &lt;= 4:             </code>
+<code>&nbsp;&nbsp;sai "Print " + i </code>
+<code>&nbsp;&nbsp;i += 1           </code>
+<code>:                            </code>
 
 <h4>Bloco DO-WHILE</h4>
-<code>do:<br>
-&nbsp;&nbsp;sai "Print " + i<br>
-&nbsp;&nbsp;i += 1<br>
-:while i &lt;= 4::</code> -- A definir
+<code>do:                          </code>
+<code>&nbsp;&nbsp;sai "Print " + i </code>
+<code>&nbsp;&nbsp;i += 1           </code>
+<code>:while i &lt;= 4::           </code> -- A definir
