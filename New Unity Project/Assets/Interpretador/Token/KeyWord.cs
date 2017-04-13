@@ -18,6 +18,19 @@ public class KeyWord : IToken
         return false;
 	}
 
+    private Type type ()
+    {
+        switch(variable)
+        {
+            case "true":
+                return Type.TRUE;
+            case "false":
+                return Type.FALSE;
+            default:
+                return Type.NONE;
+        }
+    }
+
 	public static Token get (Iterator it)
 	{
         KeyWord v = new KeyWord();

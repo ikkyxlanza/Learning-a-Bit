@@ -11,12 +11,31 @@ public enum Type
     MUL,
     DIV,
     MOD,
+    ASSIGN_PLUS,
+    ASSIGN_MINUS,
+    ASSIGN_DIV,
+    ASSIGN_MUL,
+    ASSIGN_MOD,
     LPAREN,
     RPAREN,
+
+    GREATER,
+    LESS_THAN,
+    EQUALS,
+    DIFFERENT,
+    GREATER_EQUALS,
+    LESS_THAN_EQUALS,
+    AND,
+    OR,
+    NOT,
+
     ASSIGN,
 
     INT,
-    FLOAT
+    FLOAT,
+
+    TRUE,
+    FALSE
 }
 
 public class Token

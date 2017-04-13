@@ -2,32 +2,86 @@ using System;
 
 public class Symbol : IToken
 {
-    public char ope { get; private set; }
+    public string ope { get; private set; }
 
-    private Symbol(char ope)
+    private Symbol()
     {
-        this.ope = ope;
+        this.ope = "";
     }
 
-    public Type type()
+    private bool add(string value)
+    {
+        if (ope.Length > 2) return false;
+        switch (value)
+        {
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+            case "%":
+            case "(":
+            case ")":
+            case "=":
+            case ">":
+            case "<":
+            case "!":
+            case "|":
+            case "&":
+            case "~":
+                ope += value + "";
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    private Type type()
     {
         switch (ope)
         {
-            case '+':
+            case "+":
                 return Type.PLUS;
-            case '-':
+            case "-":
                 return Type.MINUS;
-            case '*':
+            case "*":
                 return Type.MUL;
-            case '/':
+            case "/":
                 return Type.DIV;
-            case '%':
+            case "%":
                 return Type.MOD;
-            case '(':
+            case "+=":
+                return Type.ASSIGN_PLUS;
+            case "-=":
+                return Type.ASSIGN_MINUS;
+            case "*=":
+                return Type.ASSIGN_MUL;
+            case "/=":
+                return Type.ASSIGN_DIV;
+            case "%=":
+                return Type.ASSIGN_MOD;
+            case ">":
+                return Type.GREATER;
+            case "<":
+                return Type.LESS_THAN;
+            case "==":
+                return Type.EQUALS;
+            case "!=":
+                return Type.DIFFERENT;
+            case ">=":
+                return Type.GREATER_EQUALS;
+            case "<=":
+                return Type.LESS_THAN_EQUALS;
+            case "&&":
+                return Type.AND;
+            case "||":
+                return Type.OR;
+            case "~":
+                return Type.NOT;
+            case "(":
                 return Type.LPAREN;
-            case ')':
+            case ")":
                 return Type.RPAREN;
-            case '=':
+            case "=":
                 return Type.ASSIGN;
             default:
                 return Type.NONE;
@@ -36,22 +90,14 @@ public class Symbol : IToken
 
     public static Token get(Iterator it)
     {
-        char v = it.current();
-        switch (v)
+        Symbol sym = new Symbol();
+        if (sym.add(it.current() + ""))
         {
-            case '+':
-            case '-':
-            case '*':
-            case '/':
-            case '%':
-            case '(':
-            case ')':
-            case '=':
-                it.next();
-                Symbol op = new Symbol(v);
-                return new Token(op.type(), op);
-            default:
-                return null;
+            while (it.hasNext())
+                if (!sym.add(it.next() + ""))
+                    break;
+            return new Token(sym.type(), sym);
         }
+        return null;
     }
 }
