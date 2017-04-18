@@ -2,17 +2,17 @@ using System;
 
 public class KeyWord : IToken
 {
-	public string variable { get; private set;}
+	public string word { get; private set;}
 
 	private KeyWord()
 	{
-		this.variable = "";
+		this.word = "";
 	}
 
 	private bool add (char value)
 	{
 		if((int)value >= 97 && (int)value <= 122) {
-			variable += value;
+			word += value;
 			return true;
         }
         return false;
@@ -20,14 +20,18 @@ public class KeyWord : IToken
 
     private Type type ()
     {
-        switch(variable)
+        switch(word)
         {
             case "true":
                 return Type.TRUE;
             case "false":
                 return Type.FALSE;
+            case "if":
+                return Type.IF;
+            case "else":
+                return Type.ELSE;
             default:
-                return Type.NONE;
+                return Type.ID;
         }
     }
 
@@ -38,7 +42,7 @@ public class KeyWord : IToken
             while (it.hasNext ())
 				if (!v.add (it.next ()))
 					break;
-			return new Token(Type.ID, v);
+			return new Token(v.type(), v);
         }
 		return null;
 	}

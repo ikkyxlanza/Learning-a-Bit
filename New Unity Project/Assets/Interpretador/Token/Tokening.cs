@@ -38,6 +38,7 @@ public class Tokening
             }
         }
         token = token.next;
+        //Debug.Log(print());
     }
 
     private bool skipSpace(Iterator it)

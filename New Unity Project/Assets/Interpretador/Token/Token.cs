@@ -11,6 +11,8 @@ public enum Type
     MUL,
     DIV,
     MOD,
+    POW,
+    SQRT,
     ASSIGN_PLUS,
     ASSIGN_MINUS,
     ASSIGN_DIV,
@@ -33,9 +35,14 @@ public enum Type
 
     INT,
     FLOAT,
+    BOOL,
 
     TRUE,
-    FALSE
+    FALSE,
+
+    IF,
+    COLON,
+    ELSE
 }
 
 public class Token

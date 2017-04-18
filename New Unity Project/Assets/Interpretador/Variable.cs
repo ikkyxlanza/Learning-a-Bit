@@ -1,90 +1,86 @@
 ﻿using System;
+using UnityEngine;
 
 public class Variable
 {
-    private Unit[] units;
+    private IVariable[] variables;
     private int count;
 
-    public Variable()
+    public Variable(int vars)
     {
-        this.units = new Unit[20];
+        this.variables = new IVariable[vars];
         this.count = 0;
     }
 
-    public void createVariable(string name, INumber iNumber)
+    public void createVariable(string name, IVariable variable)
     {
-        if (iNumber.isInteger)
-        {
-            units[count++] = new Unit(name, iNumber.valueI);
-        }
-        else
-        {
-            units[count++] = new Unit(name, iNumber.valueF);
-        }
+        if(count >= variables.Length) throw new Error("Quantidade máxima de variáveis atingida!");
+        if(variable == null)
+            variable = new Null();
+        variable.name = name;
+        this.variables[count++] = variable;
     }
 
-    public void createVariable(INumber iNumber)
+    public void createVariable(IVariable variable)
     {
-        createVariable("var" + count, iNumber);
+        createVariable("var" + count, variable);
     }
 
-    public INode getVariable(string name)
+    public IVariable getVariable(string name)
     {
-        int index = Array.FindIndex(units, unit => unit.name.Equals(name));
-        //return (index >= 0 ? (units[index].type == Type.INT) ? new Integer(units[index].valueI) as INode : new Float(units[index].valueF) as INode : null);
+        int index = find(name);
         if (index >= 0)
-        {
-            if (units[index].type == Type.INT)
-                return new Integer(units[index].valueI);
-            return new Float(units[index].valueF);
-        }
+            return variables[index];
         return null;
     }
 
-    public void setVariable(string name, INumber iNumber)
+    public void setVariable(string name, IVariable variable)
     {
-        int index = Array.FindIndex(units, unit => unit.name.Equals(name));
+        int index = find(name);
         if (index >= 0)
-            if (iNumber.isInteger)
-                units[index].valueI = iNumber.valueI;
-            else
-                units[index].valueF = iNumber.valueF;
+        {
+            variable.name = name;
+            variables[index] = variable;
+        }
     }
 
     public bool checkName(string name)
     {
-        return Array.FindIndex(units, unit => unit.name.Equals(name)) != -1;
+        return find(name) != -1;
     }
 
-    private class Unit
+    private int find(string name)
     {
-        public int valueI { get; set; }
-        private float ValueF { get; set; }
-        public float valueF
+        for(var i = 0; i < count; i++)
+            if(variables[i].name.Equals(name)) return i;
+        return -1;
+    }
+
+    public string state()
+    {
+        string s = "Variáveis\n";
+        for(var i = 0; i < count; i++)
         {
-            get { return this.ValueF; }
-            set
+            IOperator ip = variables[i] as IOperator;
+            if(ip == null)
             {
-                this.type = Type.FLOAT;
-                this.ValueF = value;
+                s += "Nome: " + variables[i].name + ", Valor: Null\n";
+                continue;
             }
+            Type type = ip.type;
+            if(type == Type.BOOL)
+                s += "Nome: " + variables[i].name + ", Valor: " + (variables[i] as Bool).value;
+            else if(type == Type.INT)
+                s += "Nome: " + variables[i].name + ", Valor: " + (variables[i] as Integer).value;
+            else
+                s += "Nome: " + variables[i].name + ", Valor: " + (variables[i] as Float).value;
+            s += "\n";
         }
+        return s;
+    }
+
+    private class Null : IVariable
+    {
         public string name { get; set; }
-        public Type type { get; set; }
-
-
-        public Unit(string name, int value)
-        {
-            this.valueI = value;
-            this.name = name;
-            this.type = Type.INT;
-        }
-
-        public Unit(string name, float value)
-        {
-            this.valueF = value;
-            this.name = name;
-            this.type = Type.FLOAT;
-        }
     }
 }

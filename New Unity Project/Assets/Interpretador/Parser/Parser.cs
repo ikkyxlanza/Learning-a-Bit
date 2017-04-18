@@ -3,12 +3,25 @@ using UnityEngine;
 
 public class Parser
 {
-
-    public Parser(string line)
+    public static Statement statement { get; set; }
+    
+    public static INode parser(string program)
     {
-        Tokening tokening = new Tokening(line);
-        Debug.Log(tokening.print());
-        INode iNode = Expresion.expr(new IteratorToken(tokening.token));
-        Debug.Log((iNode.run() as INumber).valueI);
+        char[] separator = {'\n'};
+        string[] lines = program.Split(separator);
+        Tokening[] tokening = new Tokening[lines.Length];
+        for (var i = 0; i < lines.Length; i++)
+            tokening[i] = new Tokening(lines[i]);
+        IteratorTokening it = new IteratorTokening(tokening);
+        statement = new Statement(null);
+        Statement state = statement;
+        while (it.hasNext())
+        {
+            INode iNode = Line.statement(it);
+            Statement newSta = new Statement(iNode);
+            state.next = newSta;
+            state = newSta;
+        }
+        return statement.next;
     }
 }

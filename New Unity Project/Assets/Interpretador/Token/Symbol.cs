@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class Symbol : IToken
 {
@@ -11,7 +12,7 @@ public class Symbol : IToken
 
     private bool add(string value)
     {
-        if (ope.Length > 2) return false;
+        if (ope.Length > 1 || ope.Equals("~") || ope.Equals("(") || ope.Equals(")") || ope.Equals(":"))  return false;
         switch (value)
         {
             case "+":
@@ -28,6 +29,7 @@ public class Symbol : IToken
             case "|":
             case "&":
             case "~":
+            case ":":
                 ope += value + "";
                 return true;
             default:
@@ -49,6 +51,10 @@ public class Symbol : IToken
                 return Type.DIV;
             case "%":
                 return Type.MOD;
+            case "**":
+                return Type.POW;
+            case "//":
+                return Type.SQRT;
             case "+=":
                 return Type.ASSIGN_PLUS;
             case "-=":
@@ -83,6 +89,8 @@ public class Symbol : IToken
                 return Type.RPAREN;
             case "=":
                 return Type.ASSIGN;
+            case ":":
+                return Type.COLON;
             default:
                 return Type.NONE;
         }

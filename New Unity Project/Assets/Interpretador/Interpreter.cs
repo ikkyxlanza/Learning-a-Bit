@@ -3,15 +3,14 @@ using UnityEngine;
 
 public class Interpreter
 {
-	private int i = 0;
+	public static Variable variables { get; private set; }
+	private INode iNode { get; set; }
 
-	public Interpreter ()
+	public Interpreter (string program)
 	{
-
-	}
-
-	public void process (string value)
-	{
-		
+		variables = new Variable(20);
+		iNode = Parser.parser(program);
+		iNode.run();
+		Debug.Log(variables.state());
 	}
 }

@@ -1,14 +1,14 @@
 using System;
 
-public class Integer : INumber
+public class Integer : IOperator
 {
-    public bool isInteger { get { return true; } private set { } }
-    public int valueI { get; private set; }
-    public float valueF { get; private set; }
+    public Type type { get { return Type.INT; } set {} }
+    public string name { get; set; }
+    public int value { get; private set; }
 
     public Integer(int value)
     {
-        this.valueI = value;
+        this.value = value;
     }
 
     public INode run()
