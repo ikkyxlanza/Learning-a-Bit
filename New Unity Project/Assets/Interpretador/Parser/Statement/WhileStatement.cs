@@ -1,23 +1,19 @@
 using System;
-using UnityEngine;
 
-public class IfStatement : INode
+public class WhileStatement : INode
 {
-    public INode expr { get; private set; }
-    public Statement se { get; private set; }
-    public INode senao { get; private set; }
-
-    public IfStatement(IteratorTokening it)
+    private Statement body { get; set; }
+    private INode expr { get; set; }
+    public WhileStatement(IteratorTokening it)
     {
         IteratorToken ite = new IteratorToken(it.current().token);
-        senao = null;
         ite.next();
         expr = Expression.expr(ite);
         Token token = ite.current();
         if (token.type == Type.COLON)
         {
-            se = new Statement(null);
-            Statement state = se;
+            body = new Statement(null);
+            Statement state = body;
             do
             {
                 INode iNode = Line.statement(it);
@@ -25,22 +21,23 @@ public class IfStatement : INode
                 state.next = newSta;
                 state = newSta;
             } while (it.current().token.type != Type.COLON);
-            se = se.next as Statement;
-
-            if (it.current().token.next != null && it.current().token.next.type == Type.ELSE)
-                senao = new ElseStatement(it);
+            body = body.next as Statement;
         }
         else
             throw new Error("Syntax error!");
-
     }
 
     public INode run()
     {
-        if ((expr.run() as Bool).value)
-            se.run();
-        else if (senao != null)
-            senao.run();
+        IConditional check = new TrueConditional();
+        while ((expr.run() as Bool).value && check.check(Type.WHILE))
+        {
+            body.run();
+            if (Interpreter.helper.Count > 0)
+                check = Interpreter.helper.Pop();
+            else
+                check = new TrueConditional();
+        }
         return null;
     }
 }

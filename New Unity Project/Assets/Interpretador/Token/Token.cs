@@ -42,7 +42,10 @@ public enum Type
 
     IF,
     COLON,
-    ELSE
+    ELSE,
+    WHILE,
+    CONTINUE,
+    BREAK
 }
 
 public class Token

@@ -8,15 +8,16 @@ public class Teste : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Interpreter i = new Interpreter("a = 1 == 1\n" +
-                                        "if ~a:\n" +
-                                        "  b = 1\n" +
-                                        ": else :\n" +
-                                        "  if a:\n" +
-                                        "    c = 1\n"+
-                                        "  : else :\n"+
-                                        "    d = 1\n"+
-                                        "  :\n"+
+        Interpreter i = new Interpreter("a = 1\n" +
+                                        "b = 0\n" +
+                                        "c = 0\n" +
+                                        "while b <= 5:\n" +
+                                        "  a += a\n" +
+                                        "  b += 1\n" +
+                                        "  if b == 3:\n" +
+                                        "    break\n" +
+                                        "  :\n" +
+                                        "  c += 2\n" +
                                         ":");
     }
 

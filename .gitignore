@@ -31,3 +31,7 @@ sysinfo.txt
 *.unitypackage
 
 **/*.meta
+
+**/.vscode
+New Unity Project/ProjectSettings/ProjectVersion.txt
+*.txt
