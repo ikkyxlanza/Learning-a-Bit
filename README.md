@@ -14,8 +14,8 @@
   <li>Atribuição multiplicação <b>*=</b></li>
   <li>Atribuição divisão <b>/=</b></li>
   <li>Atribuição modulo <b>%=</b></li>
-  <li>Potência <b>**</b> -- A definir</li>
-  <li>Raiz <b>//</b> -- A definir</li>
+  <li>Potência <b>**</b></li>
+  <li>Raiz <b>//</b></li>
 </ul>
 
 <h4>Operadores lógico</h4>
@@ -44,7 +44,8 @@ f = true<br>
 t = false<br>
 
 <h4>Vetores</h4>
-- A definir
+v = [1, 2, 3, 4, 5]<br>
+v = [#20]<br>
 
 <h4>Bloco IF</h4>
 <code>if 1 == 1:                     </code><br>
@@ -73,4 +74,4 @@ t = false<br>
 <code>do:                          </code><br>
 <code>&nbsp;&nbsp;sai "Print " + i </code><br>
 <code>&nbsp;&nbsp;i += 1           </code><br>
-<code>:while i &lt;= 4::           </code><br> -- A definir
+<code>:while i &lt;= 4::           </code>-- A definir<br>
