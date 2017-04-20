@@ -2,11 +2,11 @@ using System;
 
 public class Bool : IOperator
 {
-    public Type type { get { return Type.BOOL; } set {} }
+    public Type type { get { return Type.BOOL; } set { } }
     public string name { get; set; }
     public bool value { get; private set; }
 
-    public Bool (bool value)
+    public Bool(bool value)
     {
         this.value = value;
     }
@@ -14,5 +14,10 @@ public class Bool : IOperator
     public INode run()
     {
         return this;
+    }
+
+    public IVariable clone()
+    {
+        return new Bool(value);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class CheckElement : INode
 {
@@ -14,6 +15,9 @@ public class CheckElement : INode
     public INode run()
     {
         Vector vector = (Interpreter.variables.getVariable(name) as IOperator) as Vector;
-        return vector.value[(index.run() as Integer).value];
+        int position = (index.run() as Integer).value;
+        if (position < 0) position = (vector.Length.run() as Integer).value + position;
+        if (Interpreter.debug) Debug.Log("ACESS POSITION " + position + " OF VECTOR " + name);
+        return vector.value[position];
     }
 }

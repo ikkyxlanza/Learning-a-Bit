@@ -29,6 +29,11 @@ public class IfStatement : INode
 
             if (it.current().token.next != null && it.current().token.next.type == Type.ELSE)
                 senao = new ElseStatement(it);
+            else if (it.lookNext() != null && it.lookNext().token != null && it.lookNext().token.type == Type.ELSE)
+            {
+                it.next();
+                senao = new ElseStatement(it);
+            }
         }
         else
             throw new Error("Syntax error!");

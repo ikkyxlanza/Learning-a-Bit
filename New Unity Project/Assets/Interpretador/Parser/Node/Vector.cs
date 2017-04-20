@@ -36,11 +36,10 @@ public class Vector : IOperator
                 e.nextElent = new EachElement();
                 e = e.nextElent;
                 len++;
-                Debug.Log(it.current().type);
             } while (it.current().type != Type.RBRACKET);
             length = new Integer(len);
         }
-    
+
         if (it.current().type != Type.RBRACKET)
             throw new Error("Erro no código!");
     }
@@ -71,5 +70,10 @@ public class Vector : IOperator
         {
             return element.run();
         }
+    }
+
+    public IVariable clone()
+    {
+        return this;
     }
 }

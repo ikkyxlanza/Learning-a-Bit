@@ -1,6 +1,4 @@
-a = 0
-vet = [#10]
-while a < 10:
-	vet[a] = a+1
-	a += 1
-:
+vet = [9,1,8,2,7]
+c = vet[2]
+d = vet[2]
+c += c

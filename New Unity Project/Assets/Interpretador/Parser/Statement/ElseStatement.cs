@@ -7,10 +7,11 @@ public class ElseStatement : INode
     public ElseStatement(IteratorTokening it)
     {
         IteratorToken ite = new IteratorToken(it.current().token);
-        ite.next();
+        if (ite.current().type == Type.COLON)
+            ite.next();
         Token token = ite.next();
-               
-        if(token.type == Type.COLON)
+
+        if (token.type == Type.COLON)
         {
             senao = new Statement(null);
             Statement state = senao;
@@ -20,7 +21,7 @@ public class ElseStatement : INode
                 Statement newSta = new Statement(iNode);
                 state.next = newSta;
                 state = newSta;
-            } while(it.current().token.type != Type.COLON);
+            } while (it.current().token.type != Type.COLON);
             senao = senao.next as Statement;
         }
         else

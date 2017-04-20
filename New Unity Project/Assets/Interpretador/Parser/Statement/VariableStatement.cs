@@ -73,21 +73,32 @@ public class VariableStatement : INode
     public INode run()
     {
         IOperator iOperator = expr.run() as IOperator;
-        if (Interpreter.debug) Debug.Log("Assign to " + name);
         if (elementArray != null)
         {
+            if (Interpreter.debug) Debug.Log("ASSIGN ELEMENT TO VECTOR " + name);
             Vector vec = Interpreter.variables.getVariable(name) as Vector;
             vec.value[(elementArray.run() as Integer).value] = iOperator;
-            //Interpreter.variables.setVariable(name, vec);
         }
         else if (iOperator.type == Type.INT)
+        {
+            if (Interpreter.debug) Debug.Log("ASSIGN " + (iOperator as Integer).value + " TO " + name);
             Interpreter.variables.setVariable(name, iOperator as Integer);
+        }
         else if (iOperator.type == Type.FLOAT)
+        {
+            if (Interpreter.debug) Debug.Log("ASSIGN " + (iOperator as Float).value + " TO " + name);
             Interpreter.variables.setVariable(name, iOperator as Float);
+        }
         else if (iOperator.type == Type.BOOL)
+        {
+            if (Interpreter.debug) Debug.Log("ASSIGN " + (iOperator as Bool).value + " TO " + name);
             Interpreter.variables.setVariable(name, iOperator as Bool);
+        }
         else if (iOperator.type == Type.VECTOR)
+        {
+            if (Interpreter.debug) Debug.Log("ASSIGN VECTOR TO " + name);
             Interpreter.variables.setVariable(name, iOperator as Vector);
+        }
         return null;
     }
 }

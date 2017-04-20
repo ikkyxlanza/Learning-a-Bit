@@ -2,7 +2,7 @@ using System;
 
 public class Float : IOperator
 {
-    public Type type { get { return Type.FLOAT; } set {} }
+    public Type type { get { return Type.FLOAT; } set { } }
     public string name { get; set; }
     public float value { get; private set; }
 
@@ -14,5 +14,10 @@ public class Float : IOperator
     public INode run()
     {
         return this;
+    }
+
+    public IVariable clone()
+    {
+        return new Float(value);
     }
 }

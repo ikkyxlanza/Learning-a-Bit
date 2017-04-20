@@ -39,6 +39,7 @@ public class Variable
         int index = find(name);
         if (index >= 0)
         {
+            variable = variable.clone();
             variable.name = name;
             variables[index] = variable;
         }
@@ -52,7 +53,9 @@ public class Variable
     private int find(string name)
     {
         for (var i = 0; i < count; i++)
+        {
             if (variables[i].name.Equals(name)) return i;
+        }
         return -1;
     }
 
@@ -98,5 +101,9 @@ public class Variable
     private class Null : IVariable
     {
         public string name { get; set; }
+        public IVariable clone()
+        {
+            return this;
+        }
     }
 }

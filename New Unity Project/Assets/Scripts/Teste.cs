@@ -9,7 +9,6 @@ public class Teste : MonoBehaviour
     void Start()
     {
         TextAsset asset = Resources.Load<TextAsset>("teste");
-        Debug.Log(asset.text);
         Interpreter i = new Interpreter(asset.text);
     }
 
