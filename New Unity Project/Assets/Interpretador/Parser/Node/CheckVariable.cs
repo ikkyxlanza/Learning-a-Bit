@@ -4,7 +4,7 @@ public class CheckVariable : INode
 {
     private string name { get; set; }
 
-    public CheckVariable (string name)
+    public CheckVariable(string name)
     {
         this.name = name;
     }

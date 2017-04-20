@@ -20,6 +20,8 @@ public enum Type
     ASSIGN_MOD,
     LPAREN,
     RPAREN,
+    LBRACKET,
+    RBRACKET,
 
     GREATER,
     LESS_THAN,
@@ -36,6 +38,7 @@ public enum Type
     INT,
     FLOAT,
     BOOL,
+    VECTOR,
 
     TRUE,
     FALSE,
@@ -45,7 +48,9 @@ public enum Type
     ELSE,
     WHILE,
     CONTINUE,
-    BREAK
+    BREAK,
+    COMMA,
+    HASH
 }
 
 public class Token

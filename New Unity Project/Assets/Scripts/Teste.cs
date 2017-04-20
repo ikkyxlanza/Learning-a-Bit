@@ -8,17 +8,9 @@ public class Teste : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Interpreter i = new Interpreter("a = 1\n" +
-                                        "b = 0\n" +
-                                        "c = 0\n" +
-                                        "while b <= 5:\n" +
-                                        "  a += a\n" +
-                                        "  b += 1\n" +
-                                        "  if b == 3:\n" +
-                                        "    break\n" +
-                                        "  :\n" +
-                                        "  c += 2\n" +
-                                        ":");
+        TextAsset asset = Resources.Load<TextAsset>("teste");
+        Debug.Log(asset.text);
+        Interpreter i = new Interpreter(asset.text);
     }
 
     // Update is called once per frame

@@ -30,13 +30,13 @@ public class BinaryOperator : INode
             return calcFloat((a as Float).value, (float)(b as Integer).value);
         else if (a.type == Type.FLOAT && b.type == Type.FLOAT)
             return calcFloat((a as Float).value, (b as Float).value);
-        else 
+        else
             throw new Error("Can't operator " + type + " with " + a.type + " and " + b.type);
     }
 
     private IOperator calcInt(int a, int b)
     {
-        Debug.Log(a + " " + type + " " + b);
+        if (Interpreter.debug) Debug.Log(a + " " + type + " " + b);
         switch (type)
         {
             case Type.PLUS:
@@ -52,7 +52,7 @@ public class BinaryOperator : INode
             case Type.POW:
                 return new Integer((int)Math.Pow(a, b));
             case Type.SQRT:
-                return new Float((float)Math.Pow((float)a, (1/(float)b)));
+                return new Float((float)Math.Pow((float)a, (1 / (float)b)));
             case Type.GREATER:
                 return new Bool(a > b);
             case Type.LESS_THAN:
@@ -72,7 +72,7 @@ public class BinaryOperator : INode
 
     private IOperator calcFloat(float a, float b)
     {
-        Debug.Log(a + " " + type + " " + b);
+        if (Interpreter.debug) Debug.Log(a + " " + type + " " + b);
         switch (type)
         {
             case Type.PLUS:
@@ -88,7 +88,7 @@ public class BinaryOperator : INode
             case Type.POW:
                 return new Float((float)Math.Pow(a, b));
             case Type.SQRT:
-                return new Float((float)Math.Pow(a, (1/b)));
+                return new Float((float)Math.Pow(a, (1 / b)));
             case Type.GREATER:
                 return new Bool(a > b);
             case Type.LESS_THAN:
@@ -108,7 +108,7 @@ public class BinaryOperator : INode
 
     private IOperator calcBool(bool a, bool b)
     {
-        Debug.Log(a + " " + type + " " + b);
+        if (Interpreter.debug) Debug.Log(a + " " + type + " " + b);
         switch (type)
         {
             case Type.AND:

@@ -38,12 +38,12 @@ public class Tokening
             }
         }
         token = token.next;
-        //Debug.Log(print());
+        if (Interpreter.debug) Debug.Log(print());
     }
 
     private bool skipSpace(Iterator it)
     {
-        if (it.current() == ' ')
+        if ((int)it.current() <= 32)
         {
             it.next();
             return true;
