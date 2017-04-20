@@ -46,6 +46,7 @@ t = false<br>
 <h4>Vetores</h4>
 v = [1, 2, 3, 4, 5]<br>
 v = [#20]<br>
+O acesso ao vetor pode ser com número negativo.<br>
 
 <h4>Bloco IF</h4>
 <code>if 1 == 1:                     </code><br>
