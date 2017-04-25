@@ -75,9 +75,11 @@ public class VariableStatement : INode
         IOperator iOperator = expr.run() as IOperator;
         if (elementArray != null)
         {
-            if (Interpreter.debug) Debug.Log("ASSIGN ELEMENT TO VECTOR " + name);
             Vector vec = Interpreter.variables.getVariable(name) as Vector;
-            vec.value[(elementArray.run() as Integer).value] = iOperator;
+            int position = (elementArray.run() as Integer).value;
+            if (position < 0) position = (vec.Length.run() as Integer).value + position;
+            if (Interpreter.debug) Debug.Log("ASSIGN ELEMENT TO VECTOR " + name + " IN POSITION " + position);
+            vec.value[position] = iOperator;
         }
         else if (iOperator.type == Type.INT)
         {

@@ -1,15 +1,9 @@
 || Acha o maior dentro do vetor
-vet = [9,1,10,2,7]
-maior = vet[0]
-c = 1
-d = 0
+vet = [1,2,3,4,5,6,7,8,9]
+v = [##vet]
+c = 0
 
 while c < #vet:
-    if vet[c] > maior:
-        maior = vet[c]
-    : else :
-        d += 1|| Comentário no meio do código
-    :
-    
+    v[-c - 1] = vet[c]
     c += 1
 :
