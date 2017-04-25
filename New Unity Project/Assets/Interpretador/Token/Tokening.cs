@@ -13,6 +13,7 @@ public class Tokening
         while (it.hasNext())
         {
             if (skipSpace(it)) continue;
+            if (skipComment(it)) break;
             Token tk = Number.get(it);
             if (tk != null)
             {
@@ -48,6 +49,13 @@ public class Tokening
             it.next();
             return true;
         }
+        return false;
+    }
+
+    private bool skipComment(Iterator it)
+    {
+        if ((int)it.current() == 124 && (int)it.lookNext() == 124)
+            return true;
         return false;
     }
 

@@ -58,11 +58,13 @@ public class Token
     public Type type { get; private set; }
     public IToken value { get; private set; }
     public Token next { get; set; }
+    public bool end { get; set;  }
 
     public Token(Type type, IToken value)
     {
         this.type = type;
         this.value = value;
         this.next = null;
+        this.end = false;
     }
 }

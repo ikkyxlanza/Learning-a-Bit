@@ -21,7 +21,8 @@ public class ElseStatement : INode
                 Statement newSta = new Statement(iNode);
                 state.next = newSta;
                 state = newSta;
-            } while (it.current().token.type != Type.COLON);
+            } while (it.current().token.type != Type.COLON || it.current().token.end);
+            it.current().token.end = true;
             senao = senao.next as Statement;
         }
         else

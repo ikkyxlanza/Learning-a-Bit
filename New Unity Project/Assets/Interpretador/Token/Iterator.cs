@@ -22,6 +22,11 @@ public class Iterator
         return line[++i];
     }
 
+    public char lookNext()
+    {
+        return line[i + 1];
+    }
+
     public char previous()
     {
         return line[--i];
