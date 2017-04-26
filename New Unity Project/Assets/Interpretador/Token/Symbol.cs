@@ -18,6 +18,7 @@ public class Symbol : IToken
             ope.Equals(")") ||
             ope.Equals(":") ||
             ope.Equals("[") ||
+            ope.Equals(",") ||
             ope.Equals("#")) return false;
         switch (value)
         {
