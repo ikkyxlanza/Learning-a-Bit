@@ -7,18 +7,9 @@ public class VariableStatement : INode
     private INode expr { get; set; }
     private INode elementArray { get; set; }
 
-    public VariableStatement(IteratorToken ite)
-    {
-        initVariableStatement(ite);
-    }
-
     public VariableStatement(IteratorTokening it)
     {
-        initVariableStatement(new IteratorToken(it.current().token));
-    }
-
-    private void initVariableStatement(IteratorToken ite)
-    {
+        IteratorToken ite = new IteratorToken(it.current().token);
         name = (ite.current().value as KeyWord).word;
         Token token = ite.next();
         elementArray = null;
@@ -36,6 +27,7 @@ public class VariableStatement : INode
                 throw new Error("Sem colchete direito");
             token = ite.next();
         }
+
         if (token.type == Type.ASSIGN)
         {
             token = ite.next();
@@ -75,7 +67,7 @@ public class VariableStatement : INode
             expr = new BinaryOperator(variable, Type.MOD, expr);
         }
         else
-            throw new Error("Sem tipo de atribuição!");
+            throw new Error("Erro no código!");
     }
 
     public INode run()

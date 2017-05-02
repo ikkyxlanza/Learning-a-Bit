@@ -54,7 +54,7 @@ public class Tokening
 
     private bool skipComment(Iterator it)
     {
-        if ((int)it.current() == 62 && (int)it.lookNext() == 62)
+        if ((int)it.current() == 124 && (int)it.lookNext() == 124)
             return true;
         return false;
     }

@@ -14,8 +14,6 @@ public class Line
                     return new IfStatement(it);
                 case Type.WHILE:
                     return new WhileStatement(it);
-                case Type.FOR:
-                    return new ForStatement(it);
                 case Type.BREAK:
                     return new BreakStatement(it);
                 case Type.CONTINUE:

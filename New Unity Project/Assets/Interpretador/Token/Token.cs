@@ -47,13 +47,10 @@ public enum Type
     COLON,
     ELSE,
     WHILE,
-    FOR,
-    DO,
     CONTINUE,
     BREAK,
     COMMA,
-    HASH,
-    PIPE
+    HASH
 }
 
 public class Token
@@ -61,7 +58,7 @@ public class Token
     public Type type { get; private set; }
     public IToken value { get; private set; }
     public Token next { get; set; }
-    public bool end { get; set; }
+    public bool end { get; set;  }
 
     public Token(Type type, IToken value)
     {

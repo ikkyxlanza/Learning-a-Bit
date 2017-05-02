@@ -23,7 +23,7 @@ public class Expression
         }
         return iNode;
     }
-    private static INode term1(IteratorToken it)
+    public static INode term1(IteratorToken it)
     {
         INode iNode = term2(it);
         while (it.hasCurrent())
@@ -64,7 +64,7 @@ public class Expression
         return iNode;
     }
 
-    private static INode term2(IteratorToken it)
+    public static INode term2(IteratorToken it)
     {
         INode iNode = term3(it);
         while (it.hasCurrent())
@@ -135,7 +135,7 @@ public class Expression
     private static INode factor(IteratorToken it)
     {
         Token token = it.current();
-        if (token.type == Type.COLON || token.type == Type.COMMA || token.type == Type.RBRACKET || token.type == Type.PIPE)
+        if (token.type == Type.COLON || token.type == Type.COMMA || token.type == Type.RBRACKET)
             return new NoOperator();
         it.next();
         if (token.type == Type.PLUS)

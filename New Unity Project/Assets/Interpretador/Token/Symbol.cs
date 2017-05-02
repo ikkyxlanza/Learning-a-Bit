@@ -12,59 +12,38 @@ public class Symbol : IToken
 
     private bool add(string value)
     {
-        if (ope.Length > 1) return false;
-        switch (ope)
+        if (ope.Length > 1 ||
+            ope.Equals("~") ||
+            ope.Equals("(") ||
+            ope.Equals(")") ||
+            ope.Equals(":") ||
+            ope.Equals("[") ||
+            ope.Equals("#")) return false;
+        switch (value)
         {
-            case "~":
-            case "(":
-            case ")":
-            case ":":
-            case "[":
-            case "]":
-            case "#":
-            case ",":
-            case "=":
-                return false;
             case "+":
             case "-":
             case "*":
             case "/":
             case "%":
+            case "(":
+            case ")":
+            case "=":
             case ">":
             case "<":
-                if (value.Equals("="))
-                {
-                    ope += value + "";
-                    return true;
-                }
-                else return false;
+            case "!":
+            case "|":
+            case "&":
+            case "~":
+            case ":":
+            case "[":
+            case "]":
+            case ",":
+            case "#":
+                ope += value + "";
+                return true;
             default:
-                switch (value)
-                {
-                    case "+":
-                    case "-":
-                    case "*":
-                    case "/":
-                    case "%":
-                    case "(":
-                    case ")":
-                    case "=":
-                    case ">":
-                    case "<":
-                    case "!":
-                    case "|":
-                    case "&":
-                    case "~":
-                    case ":":
-                    case "[":
-                    case "]":
-                    case ",":
-                    case "#":
-                        ope += value + "";
-                        return true;
-                    default:
-                        return false;
-                }
+                return false;
         }
     }
 
@@ -130,8 +109,6 @@ public class Symbol : IToken
                 return Type.COMMA;
             case "#":
                 return Type.HASH;
-            case "|":
-                return Type.PIPE;
             default:
                 return Type.NONE;
         }
