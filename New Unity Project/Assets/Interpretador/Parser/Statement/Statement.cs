@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using UnityEngine;
 
 public class Statement : INode
 {
@@ -14,7 +16,15 @@ public class Statement : INode
     public INode run()
     {
         IConditional iCond = Interpreter.helper.Count > 0 ? Interpreter.helper.Peek() : new TrueConditional();
-        if (iCond.check(Type.NONE)) current.run();
+        if (iCond.check(Type.NONE))
+        {
+            if (Interpreter.debugging)
+            {
+                while (!Interpreter.nextLine) Thread.Sleep(Interpreter.timeInSleep);
+                Interpreter.nextLine = false;
+            }
+            current.run();
+        }
         if (next != null) next.run();
         return null;
     }

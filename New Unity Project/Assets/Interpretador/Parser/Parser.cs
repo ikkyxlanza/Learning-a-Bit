@@ -4,10 +4,10 @@ using UnityEngine;
 public class Parser
 {
     public static Statement statement { get; set; }
-    
+
     public static INode parser(string program)
     {
-        char[] separator = {'\n'};
+        char[] separator = { '\n' };
         string[] lines = program.Split(separator);
         Tokening[] tokening = new Tokening[lines.Length];
         for (var i = 0; i < lines.Length; i++)

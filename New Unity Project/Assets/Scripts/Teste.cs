@@ -9,7 +9,7 @@ public class Teste : MonoBehaviour
     void Start()
     {
         TextAsset asset = Resources.Load<TextAsset>("teste");
-        Interpreter i = new Interpreter(asset.text);
+        Interpreter i = new Interpreter(asset.text, this);
     }
 
     // Update is called once per frame
