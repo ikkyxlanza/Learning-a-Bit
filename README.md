@@ -2,6 +2,9 @@
 
 <h2>Nome da Linguagem, a definir</h2>
 
+<h4>Comentário</h4>
+>> Seu comentário aqui!!! Agora sim!!!!
+
 <h4>Operadores aritméticos</h4>
 <ul>
   <li>Soma <b>+</b></li>
@@ -33,8 +36,8 @@
 
 <h4>Controle de loop</h4>
 <ul>
-  <li>break -- A definir</li>
-  <li>continue -- definir</li>
+  <li>break</li>
+  <li>continue</li>
 </ul>
 
 <h4>Declaração de variável</h4>
