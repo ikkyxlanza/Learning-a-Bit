@@ -34,6 +34,8 @@ public class KeyWord : IToken
                 return Type.ELSE;
             case "while":
                 return Type.WHILE;
+            case "for":
+                return Type.FOR;
             case "break":
                 return Type.BREAK;
             case "continue":
