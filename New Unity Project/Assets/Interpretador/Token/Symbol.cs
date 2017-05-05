@@ -27,8 +27,6 @@ public class Symbol : IToken
                 return false;
             case "+":
             case "-":
-            case "*":
-            case "/":
             case "%":
             case ">":
             case "<":

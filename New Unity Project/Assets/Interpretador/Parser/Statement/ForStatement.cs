@@ -11,7 +11,8 @@ public class ForStatement : INode
     {
         IteratorToken ite = new IteratorToken(it.current().token);
         ite.next();
-        variable = new VariableStatement(ite);
+        if (ite.current().type == Type.PIPE) variable = null;
+        else variable = new VariableStatement(ite);
         if (ite.current().type == Type.PIPE)
         {
             ite.next();
@@ -47,7 +48,7 @@ public class ForStatement : INode
     public INode run()
     {
         IConditional check = new TrueConditional();
-        variable.run();
+        if (variable != null) variable.run();
         while ((expr.run() as Bool).value && check.check(Type.FOR))
         {
             body.run();
