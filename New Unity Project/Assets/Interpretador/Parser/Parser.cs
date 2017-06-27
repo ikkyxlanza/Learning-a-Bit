@@ -11,7 +11,7 @@ public class Parser
         string[] lines = program.Split(separator);
         Tokening[] tokening = new Tokening[lines.Length];
         for (var i = 0; i < lines.Length; i++)
-            tokening[i] = new Tokening(lines[i]);
+            tokening[i] = new Tokening(lines[i], i);
         IteratorTokening it = new IteratorTokening(tokening);
         statement = new Statement(null);
         Statement state = statement;

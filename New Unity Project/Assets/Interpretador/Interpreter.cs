@@ -17,7 +17,7 @@ public class Interpreter
     public static bool nextLine { get; set; }
     public static bool debugging
     {
-        get { return false; }
+        get { return true; }
         private set { }
     }
     public static int timeInSleep
@@ -25,11 +25,13 @@ public class Interpreter
         get { return 250; }
         private set { }
     }
+    public static int lineNumber;
     private INode iNode { get; set; }
     private static Thread thread { get; set; }
 
     public Interpreter(string program, MonoBehaviour mono)
     {
+        lineNumber = 0;
         variables = new Variable(20);
         helper = new Stack<IConditional>();
         if (Interpreter.debugging)
@@ -60,7 +62,12 @@ public class Interpreter
         while (true)
         {
             if (Input.GetKeyDown(KeyCode.F8))
+            {
+                if (debug) Debug.Log("Run line " + (lineNumber + 1));
                 nextLine = true;
+            }
+            if(Input.GetKeyDown(KeyCode.L))
+                Debug.Log("Run line " + (lineNumber + 1));
             if (Input.GetKeyDown(KeyCode.V))
                 Debug.Log(variables.state());
             yield return null;

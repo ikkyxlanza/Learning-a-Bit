@@ -5,9 +5,11 @@ public class CheckElement : INode
 {
     private string name { get; set; }
     private INode index { get; set; }
+    public int lineNumber { get; set; }
 
     public CheckElement(string name, INode index)
     {
+        lineNumber = index.lineNumber;
         this.name = name;
         this.index = index;
     }

@@ -9,7 +9,7 @@ public class Teste : MonoBehaviour
     void Start()
     {
         TextAsset asset = Resources.Load<TextAsset>("teste");
-        //Interpreter i = new Interpreter(asset.text, this);
+        Interpreter i = new Interpreter(asset.text, this);
         StartCoroutine(key());
     }
 

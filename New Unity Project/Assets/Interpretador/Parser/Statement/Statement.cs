@@ -6,6 +6,7 @@ public class Statement : INode
 {
     public INode current { get; private set; }
     public INode next { get; set; }
+    public int lineNumber { get; set; }
 
     public Statement(INode current)
     {
@@ -18,7 +19,8 @@ public class Statement : INode
         IConditional iCond = Interpreter.helper.Count > 0 ? Interpreter.helper.Peek() : new TrueConditional();
         if (iCond.check(Type.NONE))
         {
-            if (Interpreter.debugging)
+            Interpreter.lineNumber = current.lineNumber;
+            if (Interpreter.debugging && current.lineNumber >= 0)
             {
                 while (!Interpreter.nextLine) Thread.Sleep(Interpreter.timeInSleep);
                 Interpreter.nextLine = false;

@@ -21,7 +21,7 @@ public class Line
                 case Type.CONTINUE:
                     return new ContinueStatement(it);
                 case Type.COLON:
-                    return new NoOperator();
+                    return new NoOperator(it.current().token.lineNumber);
                 default:
                     throw new Error("Erro no código!");
             }

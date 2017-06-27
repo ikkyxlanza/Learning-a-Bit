@@ -6,10 +6,12 @@ public class IfStatement : INode
     public INode expr { get; private set; }
     public Statement se { get; private set; }
     public INode senao { get; private set; }
+    public int lineNumber { get; set; }
 
     public IfStatement(IteratorTokening it)
     {
         IteratorToken ite = new IteratorToken(it.current().token);
+        lineNumber = ite.current().lineNumber;
         senao = null;
         ite.next();
         expr = Expression.expr(ite);

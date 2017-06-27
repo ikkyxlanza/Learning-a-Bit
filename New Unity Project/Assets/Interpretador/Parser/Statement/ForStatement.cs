@@ -7,9 +7,13 @@ public class ForStatement : INode
     private INode variable { get; set; }
     private INode expr { get; set; }
     private INode pass { get; set; }
+    public int lineNumber { get; set; }
+
     public ForStatement(IteratorTokening it)
     {
         IteratorToken ite = new IteratorToken(it.current().token);
+        lineNumber = ite.current().lineNumber;
+        Debug.Log(lineNumber + " vvvvv");
         ite.next();
         if (ite.current().type == Type.PIPE) variable = null;
         else variable = new VariableStatement(ite);
@@ -33,6 +37,7 @@ public class ForStatement : INode
                         state = newSta;
                     } while (it.current().token.type != Type.COLON || it.current().token.end);
                     it.current().token.end = true;
+                    state.current.lineNumber = lineNumber;
                     body = body.next as Statement;
                 }
                 else
@@ -49,7 +54,7 @@ public class ForStatement : INode
     {
         IConditional check = new TrueConditional();
         if (variable != null) variable.run();
-        while ((expr.run() as Bool).value && check.check(Type.FOR))
+        while (check.check(Type.FOR) && (expr.run() as Bool).value)
         {
             body.run();
             if (Interpreter.helper.Count > 0)

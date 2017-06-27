@@ -135,8 +135,9 @@ public class Expression
     private static INode factor(IteratorToken it)
     {
         Token token = it.current();
+        int line = it.current().lineNumber;
         if (token.type == Type.COLON || token.type == Type.COMMA || token.type == Type.RBRACKET || token.type == Type.PIPE)
-            return new NoOperator();
+            return new NoOperator(line);
         it.next();
         if (token.type == Type.PLUS)
             return new InvertSignal(factor(it), 1);
@@ -145,13 +146,13 @@ public class Expression
         else if (token.type == Type.NOT)
             return new InvertSignal(factor(it));
         else if (token.type == Type.INT)
-            return new Integer((token.value as Number).valueI);
+            return new Integer((token.value as Number).valueI, line);
         else if (token.type == Type.FLOAT)
-            return new Float((token.value as Number).getFloat());
+            return new Float((token.value as Number).getFloat(), line);
         else if (token.type == Type.TRUE)
-            return new Bool(true);
+            return new Bool(true, line);
         else if (token.type == Type.FALSE)
-            return new Bool(false);
+            return new Bool(false, line);
         else if (token.type == Type.ID)
         {
             IVariable iVariable = Interpreter.variables.getVariable((token.value as KeyWord).word);
@@ -165,7 +166,7 @@ public class Expression
                 return check;
             }
             else if (iVariable != null)
-                return new CheckVariable(iVariable.name);
+                return new CheckVariable(iVariable.name, line);
             else
                 throw new Error("Variable " + (token.value as KeyWord).word + " need be create before used!");
         }
@@ -176,7 +177,7 @@ public class Expression
                 IVariable iVariable = Interpreter.variables.getVariable((it.current().value as KeyWord).word);
                 it.next();
                 if (iVariable != null)
-                    return new CheckLength(iVariable.name);
+                    return new CheckLength(iVariable.name, line);
                 else
                     throw new Error("Variable " + (token.value as KeyWord).word + " need be create before used!");
             }
@@ -191,7 +192,7 @@ public class Expression
             return exp;
         }
         else if (token.type == Type.RPAREN)
-            return new NoOperator();
+            return new NoOperator(line);
         return null;
     }
 }

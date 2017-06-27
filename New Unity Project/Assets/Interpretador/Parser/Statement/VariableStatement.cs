@@ -6,6 +6,7 @@ public class VariableStatement : INode
     private string name { get; set; }
     private INode expr { get; set; }
     private INode elementArray { get; set; }
+    public int lineNumber { get; set; }
 
     public VariableStatement(IteratorToken ite)
     {
@@ -20,13 +21,14 @@ public class VariableStatement : INode
     private void initVariableStatement(IteratorToken ite)
     {
         name = (ite.current().value as KeyWord).word;
+        lineNumber = ite.current().lineNumber;
         Token token = ite.next();
         elementArray = null;
 
         if (!Interpreter.variables.checkName(name))
             Interpreter.variables.createVariable(name, null);
 
-        INode variable = new CheckVariable(name);
+        INode variable = new CheckVariable(name, lineNumber);
         if (token.type == Type.LBRACKET)
         {
             ite.next();
@@ -81,6 +83,7 @@ public class VariableStatement : INode
     public INode run()
     {
         IOperator iOperator = expr.run() as IOperator;
+        Interpreter.lineNumber = lineNumber;
         if (elementArray != null)
         {
             Vector vec = Interpreter.variables.getVariable(name) as Vector;

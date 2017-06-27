@@ -13,10 +13,12 @@ public class Vector : IOperator
     }
     public IOperator[] value { get; private set; }
     private EachElement elem { get; set; }
+    public int lineNumber { get; set; }
 
     public Vector(IteratorToken it)
     {
         Token token = it.current();
+        lineNumber = token.lineNumber;
         if (it.lookNext().type == Type.HASH)
         {
             it.next();
@@ -37,7 +39,7 @@ public class Vector : IOperator
                 e = e.nextElent;
                 len++;
             } while (it.current().type != Type.RBRACKET);
-            length = new Integer(len);
+            length = new Integer(len, lineNumber);
         }
 
         if (it.current().type != Type.RBRACKET)
@@ -50,14 +52,14 @@ public class Vector : IOperator
         value = new IOperator[len];
         if (elem == null)
             for (var i = 0; i < len; i++)
-                value[i] = new Integer(0);
+                value[i] = new Integer(0, lineNumber);
         else
             for (var i = 0; i < len; i++)
             {
                 value[i] = elem.run() as IOperator;
                 elem = elem.nextElent;
             }
-        length = new Integer(len);
+        length = new Integer(len, lineNumber);
         return this;
     }
 
@@ -65,9 +67,11 @@ public class Vector : IOperator
     {
         public INode element { get; set; }
         public EachElement nextElent { get; set; }
+        public int lineNumber { get; set; }
 
         public INode run()
         {
+            lineNumber = element.lineNumber;
             return element.run();
         }
     }

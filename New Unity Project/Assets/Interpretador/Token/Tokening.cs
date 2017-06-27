@@ -5,7 +5,7 @@ public class Tokening
 {
     public Token token { get; private set; }
 
-    public Tokening(string line)
+    public Tokening(string line, int lineNumber)
     {
         Iterator it = new Iterator(line);
         token = new Token(Type.NONE, null);
@@ -17,6 +17,7 @@ public class Tokening
             Token tk = Number.get(it);
             if (tk != null)
             {
+                tk.lineNumber = lineNumber;
                 lastToken.next = tk;
                 lastToken = tk;
                 continue;
@@ -25,6 +26,7 @@ public class Tokening
             tk = Symbol.get(it);
             if (tk != null)
             {
+                tk.lineNumber = lineNumber;
                 lastToken.next = tk;
                 lastToken = tk;
                 continue;
@@ -33,6 +35,7 @@ public class Tokening
             tk = KeyWord.get(it);
             if (token != null)
             {
+                tk.lineNumber = lineNumber;
                 lastToken.next = tk;
                 lastToken = tk;
                 continue;

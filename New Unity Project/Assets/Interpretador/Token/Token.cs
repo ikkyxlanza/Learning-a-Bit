@@ -62,6 +62,7 @@ public class Token
     public IToken value { get; private set; }
     public Token next { get; set; }
     public bool end { get; set; }
+    public int lineNumber { get; set;}
 
     public Token(Type type, IToken value)
     {
